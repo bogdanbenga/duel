@@ -1,10 +1,9 @@
 package me.guillaume.duel;
 
-import me.guillaume.duel.controller.Engagable;
 import me.guillaume.duel.controller.Equipable;
-import me.guillaume.duel.equipment.Equipment;
 import me.guillaume.duel.equipment.EquipmentFactory;
-import me.guillaume.duel.equipment.weapons.DamageFactory;
+import me.guillaume.duel.equipment.DamageFactory;
+import me.guillaume.duel.equipment.EquipmentInHand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +11,12 @@ import java.util.List;
 /**
  * @author Bogdan Benga <Bogdan.Benga@endava.com></>
  */
-public abstract class Fighter implements Equipable, Engagable {
+public abstract class Fighter implements Equipable {
 
+    private static final String ARMOR = "armor";
     private int hitPoints;
-    private List<Equipment> equipmentList;
+    private boolean armored;
+    private List<EquipmentInHand> equipmentList;
 
     public Fighter(final int hitPoints) {
         this.hitPoints = hitPoints;
@@ -24,21 +25,18 @@ public abstract class Fighter implements Equipable, Engagable {
 
     @Override
     public Fighter equip(String equipmentName) {
-        equipmentList.add(EquipmentFactory.getEquipment(equipmentName));
+
+        if (equipmentName.equals(ARMOR)){
+            armored = true;
+        } else {
+            equipmentList.add(EquipmentFactory.getEquipment(equipmentName));
+        }
         return this;
     }
 
-    @Override
-    public void engage(final Engagable opponent) {
-        if (opponent instanceof Fighter) {
-            engageFighter((Fighter) opponent);
-        }
-
-
-    }
-
-    private void engageFighter(final Fighter opponent) {
+    public void engage(final Fighter opponent) {
         int damage = DamageFactory.getDamage(this, opponent);
+
         if (opponent.hitPoints <= damage) {
             opponent.hitPoints = 0;
         } else {
@@ -47,16 +45,15 @@ public abstract class Fighter implements Equipable, Engagable {
         }
     }
 
-    @Override
     public int hitPoints() {
         return hitPoints;
     }
 
-    public List<Equipment> getEquipmentList() {
+    public List<EquipmentInHand> getEquipmentList() {
         return equipmentList;
     }
 
-    public void setEquipmentList(final List<Equipment> equipmentList) {
+    public void setEquipmentList(final List<EquipmentInHand> equipmentList) {
         this.equipmentList = equipmentList;
     }
 }

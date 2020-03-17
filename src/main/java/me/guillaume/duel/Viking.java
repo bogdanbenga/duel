@@ -1,5 +1,7 @@
 package me.guillaume.duel;
 
+import me.guillaume.duel.equipment.EquipmentFactory;
+
 /**
  * @author Bogdan Benga <Bogdan.Benga@endava.com></>
  */
@@ -9,7 +11,7 @@ public class Viking extends Fighter{
 
     public Viking() {
         super(VIKING_INITIAL_HIT_POINTS);
-        equip("axe");
+        equip(EquipmentFactory.AXE);
     }
 
     @Override

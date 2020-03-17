@@ -1,5 +1,7 @@
 package me.guillaume.duel;
 
+import me.guillaume.duel.equipment.EquipmentFactory;
+
 /**
  * @author Bogdan Benga <Bogdan.Benga@endava.com></>
  */
@@ -10,12 +12,11 @@ public class Swordsman extends Fighter {
 
     public Swordsman(final String vicious) {
         super(SWORDSMAN_INITIAL_HIT_POINTS);
-        equip("sword");
     }
 
     public Swordsman() {
         super(SWORDSMAN_INITIAL_HIT_POINTS);
-        equip("sword");
+        equip(EquipmentFactory.SWORD);
     }
 
     @Override

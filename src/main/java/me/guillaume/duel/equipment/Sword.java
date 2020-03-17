@@ -1,13 +1,13 @@
-package me.guillaume.duel.equipment.weapons;
+package me.guillaume.duel.equipment;
 
 /**
  * @author Bogdan Benga <Bogdan.Benga@endava.com></>
  */
-public class Sword extends Weapon {
+public class Sword extends EquipmentInHand {
 
     private static final int SWORD_DAMAGE = 5;
 
-    public Sword(final String name) {
+    public Sword(String name) {
         super(name, SWORD_DAMAGE);
     }
 }
