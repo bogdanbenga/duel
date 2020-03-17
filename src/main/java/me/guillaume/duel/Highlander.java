@@ -1,5 +1,7 @@
 package me.guillaume.duel;
 
+import me.guillaume.duel.equipment.EquipmentFactory;
+
 import java.util.logging.Logger;
 
 /**
@@ -12,7 +14,7 @@ public class Highlander extends Fighter{
 
     public Highlander() {
         super(HIGHLANDER_INITIAL_HIT_POINTS);
-        LOGGER.info("Highlander constructor");
+        equip(EquipmentFactory.GREAT_SWORD);
     }
 
     public Highlander(final String veteran) {
